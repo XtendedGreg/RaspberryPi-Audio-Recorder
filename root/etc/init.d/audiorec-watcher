@@ -1,0 +1,18 @@
+#!/sbin/openrc-run
+  
+name=$RC_SVCNAME
+cfgfile="/etc/$RC_SVCNAME/$RC_SVCNAME.conf"
+command="/usr/bin/audiorec-watcher"
+command_user="root"
+pidfile="/run/$RC_SVCNAME/$RC_SVCNAME.pid"
+command_background="yes"
+
+depend() {
+        need net
+}
+
+start_pre() {
+        checkpath --directory --owner $command_user:$command_user --mode 0775 \
+                /run/$RC_SVCNAME /var/log/$RC_SVCNAME
+}
+

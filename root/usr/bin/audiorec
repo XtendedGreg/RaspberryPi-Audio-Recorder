@@ -1,0 +1,11 @@
+#!/bin/ash
+#
+#Service
+	# INIT.D
+	# Executable <---
+	
+if [ ! -e /tmp/recordings ]; then mkdir /tmp/recordings; fi
+	
+arecord -c 2 -f S32_LE -r 48000 -V stereo /tmp/recordings/$(date +%Y-%m-%d_%H.%M.%S_%Z).wav
+
+exit 0
